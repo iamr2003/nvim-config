@@ -43,6 +43,7 @@ vim.keymap.set("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.li
 vim.keymap.set("n", "<leader>fm", vim.cmd.Format)
 
 -- toggle relative line number
+vim.wo.relativenumber = true
 vim.keymap.set("n", "<leader>rl", function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end)
