@@ -1,4 +1,3 @@
-require("iamr")
 --[[
 
 =====================================================================
@@ -41,6 +40,8 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+require("iamr")
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -206,6 +207,9 @@ require('lazy').setup({
 
   {
     'nvim-treesitter/nvim-treesitter-context',
+  },
+  {
+    'ThePrimeagen/vim-be-good',
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -528,6 +532,8 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
