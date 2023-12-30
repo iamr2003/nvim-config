@@ -7,6 +7,7 @@ vim.keymap.set("n", "<leader>x", "<C-w>q")
 
 --open new terminal
 vim.keymap.set("n", "<leader>t", vim.cmd.terminal)
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
 -- make it save on exit?
 vim.keymap.set("n", "<leader>-", vim.cmd.Ex)
@@ -47,3 +48,7 @@ vim.wo.relativenumber = true
 vim.keymap.set("n", "<leader>rl", function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end)
+
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
