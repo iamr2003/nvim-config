@@ -5,6 +5,17 @@ vim.keymap.set("n", "<leader>v", "<C-w>v<C-w>l")
 vim.keymap.set("n", "<leader>h", "<C-w>s<C-w>j")
 vim.keymap.set("n", "<leader>x", "<C-w>q")
 
+-- open config directory
+vim.keymap.set("n", "<leader>ec", function()
+	vim.cmd("e $MYVIMRC")
+end)
+
+-- update from config
+vim.keymap.set("n", "<leader>cf", function()
+	vim.cmd("source $MYVIMRC")
+end)
+
+
 --open new terminal
 vim.keymap.set("n", "<leader>t", vim.cmd.terminal)
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
