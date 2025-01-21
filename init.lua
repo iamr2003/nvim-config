@@ -289,7 +289,7 @@ require('lazy').setup({
     config = function()
       require("codeium").setup({
         virtual_text = {
-          enabled = true,
+          enabled = false,
           -- These are the defaults
 
           -- Set to true if you never want completions to be shown automatically.
@@ -334,6 +334,7 @@ vim.cmd(":Copilot disable")
 
 vim.api.nvim_create_user_command('ToggleCodeium', function()
   vim.g.codeium_enabled = not vim.g.codeium_enabled
+  -- I'd like to find a way to fix autocompletions
   print("Codeium " .. (vim.g.codeium_enabled and "enabled" or "disabled"))
 end, {})
 
@@ -657,6 +658,8 @@ mason_lspconfig.setup_handlers {
 -- See `:help cmp`
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+local codeium = require 'codeium'
+
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
@@ -696,9 +699,12 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
     { name = 'codeium' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip',
+      keyword_length = 0,
+      priority = 100,
+    },
   },
 }
 vim.filetype.add({ extension = { ll = 'llvm' } })
