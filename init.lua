@@ -165,14 +165,11 @@ require('lazy').setup({
   },
 
   {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
   },
 
   -- "gc" to comment visual regions/lines
@@ -282,10 +279,27 @@ require('lazy').setup({
       -- vim.g.vimtex_view_general_options = "-a"
       vim.g.vimtex_compiler_method = "latexmk"
     end
-  }
+  },
+  {
+    "Exafunction/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({
+        virtual_text = { enabled = true },
+      })
+    end
+  },
 }, {})
 
 vim.cmd(":Copilot disable")
+
+vim.api.nvim_create_user_command('ToggleCodeium', function()
+  vim.g.codeium_enabled = not vim.g.codeium_enabled
+  print("Codeium " .. (vim.g.codeium_enabled and "enabled" or "disabled"))
+end, {})
 
 
 -- function OpenMarkdownPreview (url)
@@ -650,7 +664,7 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
+vim.filetype.add({ extension = { ll = 'llvm' } })
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`
